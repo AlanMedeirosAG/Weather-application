@@ -1,5 +1,7 @@
 //Variaveis e seletores de elementos
 const apiKey = "678ce395a7cabdb0a245a93bc85daa29";
+const unsplashKey = "DNDD7VJqZIeo3CYpNDr6ZOduX9WpyymielFgKI_yH-w";
+
 const apiCountryURL = "https://flagsapi.com/BR/flat/64.png";
 
 const cityInput = document.querySelector("#city-input");
@@ -32,6 +34,8 @@ const showWeatherData = async (city) =>{
 
     weatherContainer.classList.remove("hide")
 
+    setBackgroundImage(city)
+
 };
 
 const getWeatherData = async (city) => {
@@ -58,3 +62,21 @@ cityInput.addEventListener("keyup",(e) =>{
         showWeatherData(city)
     }
 })
+
+// Função para buscar e definir imagem de fundo
+const setBackgroundImage = async (city) => {
+    const url = `https://api.unsplash.com/photos/random?query=${city}&client_id=${unsplashKey}&orientation=landscape`;
+
+    try {
+        const res = await fetch(url);
+        const data = await res.json();
+
+        const imageUrl = data.urls.regular;
+
+        document.body.style.backgroundImage = `url(${imageUrl})`;
+        document.body.style.backgroundSize = "cover";
+        document.body.style.backgroundPosition = "center";
+    } catch (error) {
+        console.log("Erro ao buscar imagem de fundo:", error);
+    }
+};
