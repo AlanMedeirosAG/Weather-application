@@ -1,6 +1,6 @@
 //Variaveis e seletores de elementos
-const apiKey = "678ce395a7cabdb0a245a93bc85daa29";
-const unsplashKey = "DNDD7VJqZIeo3CYpNDr6ZOduX9WpyymielFgKI_yH-w";
+const apiKey = "";
+const unsplashKey = "";
 
 const apiCountryURL = "https://flagsapi.com/BR/flat/64.png";
 
