@@ -37,8 +37,12 @@ body{
     margin-bottom: 1rem;
 }
 
-.form-input-conteiner{
+.form-input-container {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 10px;
 }
 
 .form input{
@@ -46,6 +50,8 @@ body{
     border:none;
     flex:1;
     border-radius: 4px;
+    margin-bottom: 15px;
+    width: 70%;
 }
 
 .form button{
@@ -117,4 +123,31 @@ body{
     padding: 1rem;
 }
 
+/*Sugestões*/
 
+#sugestoes-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    margin-top: 10px;
+}
+
+#sugestoes {
+    display: inline-flex;
+    gap: 10px;
+    margin-top: 1rem;
+    align-items: center;
+}
+
+.suggestion-btn {
+    background-color: #7dd3fc;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s;
+}
+
+.suggestion-btn:hover {
+    background-color: #38bdf8;
+}

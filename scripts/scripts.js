@@ -1,6 +1,6 @@
 //Variaveis e seletores de elementos
-const apiKey = "";
-const unsplashKey = "";
+const apiKey = "678ce395a7cabdb0a245a93bc85daa29";
+const unsplashKey = "DNDD7VJqZIeo3CYpNDr6ZOduX9WpyymielFgKI_yH-w";
 
 const apiCountryURL = "https://flagsapi.com/BR/flat/64.png";
 
@@ -17,6 +17,8 @@ const windElement = document.querySelector("#wind span");
 
 const weatherContainer = document.querySelector("#weather-data")
 
+const sugestContainer = document.querySelector("#sugestoes-container");
+const sugestTitle = document.querySelector("#sugestoes-container-title");
 
 
 //Funções
@@ -33,6 +35,8 @@ const showWeatherData = async (city) =>{
     windElement.innerText = `${data.wind.speed}km/h`
 
     weatherContainer.classList.remove("hide")
+    sugestContainer.classList.add("hide")
+    sugestTitle.classList.add("hide")
 
     setBackgroundImage(city)
 
@@ -80,3 +84,46 @@ const setBackgroundImage = async (city) => {
         console.log("Erro ao buscar imagem de fundo:", error);
     }
 };
+
+// Lista de cidades
+
+const listaCities = ["Paris", "Tóquio", "Nova York", "São Paulo", "Londres",
+    "Roma", "Dubai", "Toronto", "Barcelona", "Sydney",
+    "Cidade do México", "", "Berlim", "Bangkok", "Rio de Janeiro"]
+
+// Função de escolha de 3 cidades aleatoriamente
+
+function getCidadesRandon(lista,quantity = 3){
+
+    const copia = [...lista];
+    const sugestoes = []
+
+    for (let i = 0; i < quantity; i++) {
+        const index = Math.floor(Math.random() * copia.length);
+        sugestoes.push(copia.splice(index, 1)[0]);
+    }
+
+    return sugestoes;
+
+}
+
+function mostrarSugest() {
+    const cities = getCidadesRandon(listaCities);
+
+    sugestContainer.innerHTML = "";
+    sugestContainer.classList.remove("hide");
+    sugestTitle.classList.remove("hide")
+
+    cities.forEach(cidade => {
+        if (cidade) {
+            const btn = document.createElement("button");
+            btn.innerText = cidade;
+            btn.classList.add("suggestion-btn");
+            btn.addEventListener("click", () => showWeatherData(cidade));
+            sugestContainer.appendChild(btn);
+        }
+    });
+}
+
+
+mostrarSugest()
